@@ -1,5 +1,8 @@
-package dev.nedimkulovac;
+package dev.nedimkulovac.console;
 
+import dev.nedimkulovac.AppConfig;
+import dev.nedimkulovac.MessageGenerator;
+import dev.nedimkulovac.NumberGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ConfigurableApplicationContext;
