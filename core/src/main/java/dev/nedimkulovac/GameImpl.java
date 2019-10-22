@@ -1,12 +1,15 @@
 package dev.nedimkulovac;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+@Slf4j
 public class GameImpl implements Game {
 
-    private static final Logger log = LoggerFactory.getLogger(Game.class);
-
+    @Autowired
     private NumberGenerator numberGenerator;
     private int guessCount = 10;
     private int number;
@@ -17,6 +20,11 @@ public class GameImpl implements Game {
     private int remainingGuesses;
     private boolean validNumberRange = true;
 
+//    public GameImpl(NumberGenerator numberGenerator) {
+//        this.numberGenerator = numberGenerator;
+//    }
+
+    @PostConstruct
     @Override
     public void reset() {
         smallest = 0;
@@ -25,6 +33,11 @@ public class GameImpl implements Game {
         biggest = numberGenerator.getMaxNumber();
         number = numberGenerator.next();
         log.debug("the number is {}", number);
+    }
+
+    @PreDestroy
+    public void preDestroy() {
+        log.info("in Game preDestroy()");
     }
 
     @Override
